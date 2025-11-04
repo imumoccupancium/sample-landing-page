@@ -143,43 +143,64 @@ function displayUserInfo(user) {
     }
     
     if (userAvatar && user.photoURL) {
+        // Remove any initials avatar if it exists
+        const initialsAvatar = document.querySelector('.initials-avatar');
+        if (initialsAvatar) {
+            initialsAvatar.remove();
+        }
+        
         userAvatar.src = user.photoURL;
         userAvatar.style.display = 'block';
+        userAvatar.onerror = function() {
+            // If image fails to load, show initials instead
+            this.style.display = 'none';
+            createInitialsAvatar(user.name || 'User', this.parentNode);
+        };
     } else if (userAvatar) {
-        // Create a default avatar with user's initials
-        const initials = (user.name || 'U').split(' ').map(n => n[0]).join('').toUpperCase();
+        // No photo URL, create initials avatar
         userAvatar.style.display = 'none';
-        
-        // Create initials avatar if it doesn't exist
-        let initialsAvatar = document.querySelector('.initials-avatar');
-        if (!initialsAvatar) {
-            initialsAvatar = document.createElement('div');
-            initialsAvatar.className = 'initials-avatar';
-            initialsAvatar.style.cssText = `
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                background: #667eea;
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: 600;
-                font-size: 0.8rem;
-            `;
-            userAvatar.parentNode.insertBefore(initialsAvatar, userAvatar);
-        }
-        initialsAvatar.textContent = initials;
+        createInitialsAvatar(user.name || 'User', userAvatar.parentNode);
     }
 }
 
-function logout() {
-    localStorage.removeItem('user');
-    showNotification('Successfully signed out!', 'success');
+function createInitialsAvatar(name, parentNode) {
+    const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
     
-    setTimeout(() => {
-        window.location.href = '/login.html';
-    }, 1500);
+    // Check if initials avatar already exists
+    let initialsAvatar = document.querySelector('.initials-avatar');
+    if (!initialsAvatar) {
+        initialsAvatar = document.createElement('div');
+        initialsAvatar.className = 'initials-avatar';
+        initialsAvatar.style.cssText = `
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        `;
+        parentNode.insertBefore(initialsAvatar, parentNode.firstChild);
+    }
+    initialsAvatar.textContent = initials;
+}
+
+function logout() {
+    // Use Firebase signOut if available, otherwise fallback to localStorage clear
+    if (window.firebaseSignOut) {
+        window.firebaseSignOut();
+    } else {
+        // Fallback for when Firebase isn't loaded
+        localStorage.removeItem('user');
+        showNotification('Successfully signed out!', 'success');
+        
+        setTimeout(() => {
+            window.location.href = '/login.html';
+        }, 1500);
+    }
 }
 
 // Notification function
