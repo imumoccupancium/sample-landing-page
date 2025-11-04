@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Landing Page - Modern Web Solutions</title>
-    <meta name="description" content="A modern, responsive landing page built with Node.js and deployed on Vercel">
+    <title>OVA Games - Free Online Games</title>
+    <meta name="description" content="Play the best free online games at OVA Games - Action, Adventure, RPG, Racing and more!">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Firebase SDK -->
     <script type="module">
@@ -103,26 +103,27 @@
     </script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <h2>SampleSite</h2>
-            </div>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#" class="nav-link">Release Index »</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Donate!</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">FAQ</a>
                 </li>
             </ul>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search games...">
+                <button class="search-btn">SEARCH</button>
+            </div>
             <div class="nav-auth">
                 <div class="user-info" id="userInfo" style="display: none;">
                     <img class="user-avatar" id="userAvatar" src="" alt="User Avatar">
@@ -133,194 +134,109 @@
                     <a href="/login.html" class="signin-btn">Sign In</a>
                 </div>
             </div>
-            <div class="nav-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Build Amazing Web Experiences</h1>
-                <p class="hero-description">
-                    Create modern, responsive websites with Node.js and deploy them seamlessly to Vercel. 
-                    Fast, reliable, and scalable solutions for your business.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get Started</a>
-                    <a href="#features" class="btn btn-secondary">Learn More</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-graphic">
-                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="50" y="50" width="300" height="200" rx="20" fill="url(#grad1)" opacity="0.8"/>
-                        <circle cx="120" cy="120" r="30" fill="#ffffff" opacity="0.9"/>
-                        <circle cx="200" cy="150" r="25" fill="#ffffff" opacity="0.7"/>
-                        <circle cx="280" cy="120" r="35" fill="#ffffff" opacity="0.8"/>
-                        <rect x="80" y="180" width="240" height="8" rx="4" fill="#ffffff" opacity="0.6"/>
-                        <rect x="80" y="200" width="180" height="8" rx="4" fill="#ffffff" opacity="0.4"/>
-                    </svg>
-                </div>
-            </div>
+    <!-- Category Navigation -->
+    <nav class="category-nav">
+        <div class="nav-container">
+            <ul class="category-menu">
+                <li><a href="#" class="category-link active">Action</a></li>
+                <li><a href="#" class="category-link">Adventure</a></li>
+                <li><a href="#" class="category-link">Anime</a></li>
+                <li><a href="#" class="category-link">Arcade</a></li>
+                <li><a href="#" class="category-link">Casual</a></li>
+                <li><a href="#" class="category-link">Fighting</a></li>
+                <li><a href="#" class="category-link">Horror</a></li>
+                <li><a href="#" class="category-link">Platformer</a></li>
+                <li><a href="#" class="category-link">Puzzle</a></li>
+                <li><a href="#" class="category-link">Racing</a></li>
+                <li><a href="#" class="category-link">RPG</a></li>
+                <li><a href="#" class="category-link">Shooter</a></li>
+                <li><a href="#" class="category-link">Simulation</a></li>
+                <li><a href="#" class="category-link">Sports</a></li>
+                <li><a href="#" class="category-link">Strategy</a></li>
+                <li><a href="#" class="category-link">VN</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose Our Solution?</h2>
-                <p>Powerful features designed to help you succeed</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Lightning Fast</h3>
-                    <p>Optimized performance with Node.js and modern deployment practices on Vercel's edge network.</p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <div class="logo-section">
+                    <h1 class="site-logo">
+                        <span class="logo-ova">OVA</span><span class="logo-games">games</span>
+                    </h1>
                 </div>
-                <div class="feature-card">
-                    <h3>Responsive Design</h3>
-                    <div class="feature-icon">📱</div>
-                    <p>Beautiful, mobile-first design that works perfectly on all devices and screen sizes.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Easy Deployment</h3>
-                    <p>Deploy instantly to Vercel with automatic builds, previews, and global CDN distribution.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Secure & Reliable</h3>
-                    <p>Built with security best practices and hosted on enterprise-grade infrastructure.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About This Project</h2>
-                    <p>
-                        This sample landing page demonstrates how to build a modern, responsive website 
-                        using Node.js and Express.js, designed specifically for deployment on Vercel.
-                    </p>
-                    <p>
-                        The project showcases best practices for web development including responsive design, 
-                        modern CSS techniques, and a clean, maintainable codebase structure.
-                    </p>
-                    <div class="tech-stack">
-                        <h3>Built With:</h3>
-                        <div class="tech-badges">
-                            <span class="tech-badge">Node.js</span>
-                            <span class="tech-badge">Express.js</span>
-                            <span class="tech-badge">HTML5</span>
-                            <span class="tech-badge">CSS3</span>
-                            <span class="tech-badge">Vercel</span>
+                
+                <div class="exclusive-section">
+                    <h3 class="section-title">exclusive games</h3>
+                    <div class="exclusive-games">
+                        <div class="exclusive-game">
+                            <img src="https://via.placeholder.com/250x150/4a6fa5/ffffff?text=Outer+Worlds+2" alt="Outer Worlds 2" class="game-image">
+                            <div class="game-overlay">
+                                <h4>Outer Worlds 2</h4>
+                            </div>
+                        </div>
+                        <div class="exclusive-game">
+                            <img src="https://via.placeholder.com/250x150/2d4a6b/ffffff?text=Ninja+Gaiden" alt="Ninja Gaiden" class="game-image">
+                            <div class="game-overlay">
+                                <h4>Ninja Gaiden</h4>
+                            </div>
+                        </div>
+                        <div class="exclusive-game">
+                            <img src="https://via.placeholder.com/250x150/8b4513/ffffff?text=Little+Nightmares+III" alt="Little Nightmares III" class="game-image">
+                            <div class="game-overlay">
+                                <h4>Little Nightmares III</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>100%</h3>
-                        <p>Responsive</p>
-                    </div>
-                    <div class="stat">
-                        <h3>Fast</h3>
-                        <p>Loading</p>
-                    </div>
-                    <div class="stat">
-                        <h3>Modern</h3>
-                        <p>Design</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </aside>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get In Touch</h2>
-                <p>Ready to start your project? Let's talk!</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <strong>Email:</strong> hello@samplesite.com
-                    </div>
-                    <div class="contact-item">
-                        <strong>Phone:</strong> +1 (555) 123-4567
-                    </div>
-                    <div class="contact-item">
-                        <strong>Address:</strong> 123 Web Street, Digital City, DC 12345
-                    </div>
+            <!-- Main Game Grid -->
+            <section class="games-grid">
+                <div class="game-card">
+                    <div class="game-header">Plants vs Zombies Replanted MULTI8-ElAmigos</div>
+                    <img src="https://via.placeholder.com/320x180/90EE90/000000?text=Plants+vs+Zombies" alt="Plants vs Zombies" class="game-image">
+                    <button class="more-btn">more</button>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>SampleSite</h3>
-                    <p>Building amazing web experiences with modern technology.</p>
+                <div class="game-card">
+                    <div class="game-header">Need for Speed Heat MULTI7-ElAmigos</div>
+                    <img src="https://via.placeholder.com/320x180/FF4500/000000?text=Need+for+Speed+Heat" alt="Need for Speed Heat" class="game-image">
+                    <button class="more-btn">more</button>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+
+                <div class="game-card">
+                    <div class="game-header">Abiotic Factor MULTI9-ElAmigos</div>
+                    <img src="https://via.placeholder.com/320x180/8A2BE2/000000?text=Abiotic+Factor" alt="Abiotic Factor" class="game-image">
+                    <button class="more-btn">more</button>
                 </div>
-                <div class="footer-section">
-                    <h4>Technology</h4>
-                    <ul>
-                        <li><a href="https://nodejs.org" target="_blank">Node.js</a></li>
-                        <li><a href="https://expressjs.com" target="_blank">Express.js</a></li>
-                        <li><a href="https://vercel.com" target="_blank">Vercel</a></li>
-                    </ul>
+
+                <div class="game-card">
+                    <div class="game-header">Darkest Dungeon II MULTI13-ElAmigos</div>
+                    <img src="https://via.placeholder.com/320x180/8B4513/000000?text=Darkest+Dungeon+II" alt="Darkest Dungeon II" class="game-image">
+                    <button class="more-btn">more</button>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 SampleSite. Built with Node.js and deployed on Vercel.</p>
-            </div>
+
+                <div class="game-card">
+                    <div class="game-header">Tails of Iron 2 Whiskers of Winter DARKSiDERS</div>
+                    <img src="https://via.placeholder.com/320x180/4169E1/000000?text=Tails+of+Iron+2" alt="Tails of Iron 2" class="game-image">
+                    <button class="more-btn">more</button>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-header">Automobilista 2 MULTI5-ElAmigos</div>
+                    <img src="https://via.placeholder.com/320x180/DC143C/000000?text=Automobilista+2" alt="Automobilista 2" class="game-image">
+                    <button class="more-btn">more</button>
+                </div>
+            </section>
         </div>
-    </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>

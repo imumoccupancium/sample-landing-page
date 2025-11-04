@@ -3,88 +3,129 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check authentication state
     checkAuthState();
     
-    // Mobile menu toggle
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.querySelector('.nav-menu');
+    // Search functionality
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
     
-    mobileMenu.addEventListener('click', function() {
-        mobileMenu.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            navMenu.classList.remove('active');
+    if (searchInput && searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            performSearch(searchInput.value.trim());
         });
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offsetTop = target.offsetTop - 70; // Account for fixed navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Contact Form Handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-
-            try {
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-                
-                if (result.success) {
-                    showNotification('Thank you! Your message has been sent successfully.', 'success');
-                    contactForm.reset();
-                } else {
-                    showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch(this.value.trim());
             }
         });
     }
 
-    // Navbar background on scroll
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
-        }
+    // Category navigation functionality
+    document.querySelectorAll('.category-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Filter games by category (placeholder for now)
+            const category = this.textContent.toLowerCase();
+            filterGamesByCategory(category);
+        });
     });
 
-    // Intersection Observer for animations
+    // Game card interactions
+    document.querySelectorAll('.game-card').forEach(card => {
+        const moreBtn = card.querySelector('.more-btn');
+        
+        if (moreBtn) {
+            moreBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const gameTitle = card.querySelector('.game-header').textContent;
+                showGameDetails(gameTitle);
+            });
+        }
+        
+        // Add click event to entire card for future functionality
+        card.addEventListener('click', function() {
+            const gameTitle = this.querySelector('.game-header').textContent;
+            // Placeholder for game page navigation
+            console.log('Clicked on game:', gameTitle);
+        });
+    });
+
+    // Exclusive games interactions
+    document.querySelectorAll('.exclusive-game').forEach(game => {
+        game.addEventListener('click', function() {
+            const gameTitle = this.querySelector('h4').textContent;
+            showGameDetails(gameTitle);
+        });
+    });
+
+    // Add hover effects to game cards
+    document.querySelectorAll('.game-card, .exclusive-game').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Logout functionality
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            logout();
+        });
+    }
+
+    // Initialize page animations
+    initializeAnimations();
+});
+
+// Game-specific functions
+function performSearch(query) {
+    if (!query) {
+        console.log('Empty search query');
+        return;
+    }
+    
+    console.log('Searching for:', query);
+    
+    // Placeholder for actual search functionality
+    // This would normally filter the games grid
+    setTimeout(() => {
+        console.log(`Found games matching "${query}"`);
+    }, 1000);
+}
+
+function filterGamesByCategory(category) {
+    console.log('Filtering by category:', category);
+    
+    // Placeholder for category filtering
+    // This would normally filter the games grid based on category
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach((card, index) => {
+        // Add a slight delay for visual effect
+        setTimeout(() => {
+            card.style.animation = 'fadeIn 0.6s ease-out';
+        }, index * 100);
+    });
+}
+
+function showGameDetails(gameTitle) {
+    console.log('Showing details for:', gameTitle);
+    
+    // Placeholder for game details modal/page
+    // This would normally open a detailed view of the game
+}
+
+function initializeAnimations() {
+    // Intersection Observer for game cards
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -99,22 +140,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
-    document.querySelectorAll('.feature-card, .about-text, .about-stats').forEach(el => {
+    // Observe game cards for animation
+    document.querySelectorAll('.game-card, .exclusive-game').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-
-    // Logout functionality
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            logout();
-        });
-    }
-});
+}
 
 // Authentication Functions
 function checkAuthState() {
@@ -195,11 +228,11 @@ function logout() {
     } else {
         // Fallback for when Firebase isn't loaded
         localStorage.removeItem('user');
-        showNotification('Successfully signed out!', 'success');
+        console.log('Successfully signed out!');
         
         setTimeout(() => {
             window.location.href = '/login.html';
-        }, 1500);
+        }, 500);
     }
 }
 
